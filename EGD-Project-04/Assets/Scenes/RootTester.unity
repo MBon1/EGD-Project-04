@@ -210,9 +210,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e77a775ce1c6d4dab5f2701da3b19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseRoot: {fileID: 11400000, guid: 1d3a6ad9719de5946a8cd9fc3706d7bd, type: 2}
-  position: {x: 0, y: 4, z: 0}
   rootTileMap: {fileID: 1047588183}
+  baseRootPosition: {x: 0, y: 4, z: 0}
+  originRoot: {fileID: 11400000, guid: 1d3a6ad9719de5946a8cd9fc3706d7bd, type: 2}
+  verticalRoot: {fileID: 11400000, guid: 9775deab9b39fb34dba82597d2c6cf64, type: 2}
+  leftTRoot: {fileID: 11400000, guid: be799c5ca7015b643806e21e08303a68, type: 2}
+  righttTRoot: {fileID: 11400000, guid: edcaa39cbdc62904a8cb2614a9944f67, type: 2}
+  leftLRoot: {fileID: 11400000, guid: 1f5cb29fde9a49b4986fe731a3fd6ff1, type: 2}
+  rightLRoot: {fileID: 11400000, guid: 16769dff5379e0c4e9a25a173555f394, type: 2}
+  crossRoot: {fileID: 11400000, guid: 7a0b3c6735640cb4680be1cd68701769, type: 2}
+  horizontalRoot: {fileID: 11400000, guid: a67bf6e919f90a94f9c126d2803fb0f2, type: 2}
+  horizontalLRoot: {fileID: 11400000, guid: d4455184a1d04be47bdd93a7868d52a6, type: 2}
+  growthPoints: []
 --- !u!1 &1047588180
 GameObject:
   m_ObjectHideFlags: 0
