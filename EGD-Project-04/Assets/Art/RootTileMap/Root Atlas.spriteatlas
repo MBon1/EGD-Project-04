@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Root Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 4978779597903719940, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 7391842219960736885, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 4378982166141552596, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 5629855562883993388, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 120869977119513937, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: -5689796163941434375, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 5500756514975319205, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: -733874246705704026, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 5814983617351972250, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 4511352140000062183, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 2124376277609566700, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: -3476025623009295106, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: -1786804763788628815, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 7867349098588834820, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - roots_tilemap_13
+  - roots_tilemap_12
+  - roots_tilemap_11
+  - roots_tilemap_10
+  - roots_tilemap_4
+  - roots_tilemap_5
+  - roots_tilemap_6
+  - roots_tilemap_7
+  - roots_tilemap_0
+  - roots_tilemap_1
+  - roots_tilemap_2
+  - roots_tilemap_3
+  - roots_tilemap_8
+  - roots_tilemap_9
+  m_RenderDataMap: {}
+  m_Tag: Root Atlas
+  m_IsVariant: 0
