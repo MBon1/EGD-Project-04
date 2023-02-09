@@ -171,6 +171,7 @@ MonoBehaviour:
   level1Fertilizer: 0
   level2Fertilizer: 0
   level3Fertilizer: 0
+  seeds: 0
 --- !u!1 &762617685
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,16 +261,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootTileMap: {fileID: 1047588183}
   originRootPosition: {x: 0, y: 4, z: 0}
-  originRoot: {fileID: 11400000, guid: 1d3a6ad9719de5946a8cd9fc3706d7bd, type: 2}
-  verticalRoot: {fileID: 11400000, guid: 9775deab9b39fb34dba82597d2c6cf64, type: 2}
-  leftTRoot: {fileID: 11400000, guid: be799c5ca7015b643806e21e08303a68, type: 2}
-  righttTRoot: {fileID: 11400000, guid: edcaa39cbdc62904a8cb2614a9944f67, type: 2}
-  leftLRoot: {fileID: 11400000, guid: 1f5cb29fde9a49b4986fe731a3fd6ff1, type: 2}
-  rightLRoot: {fileID: 11400000, guid: 16769dff5379e0c4e9a25a173555f394, type: 2}
-  crossRoot: {fileID: 11400000, guid: 7a0b3c6735640cb4680be1cd68701769, type: 2}
-  horizontalRoot: {fileID: 11400000, guid: a67bf6e919f90a94f9c126d2803fb0f2, type: 2}
-  horizontalTRoot: {fileID: 11400000, guid: d4455184a1d04be47bdd93a7868d52a6, type: 2}
+  originRoot:
+    tile: {fileID: 11400000, guid: 1d3a6ad9719de5946a8cd9fc3706d7bd, type: 2}
+    contactPoints: 01000000
+  verticalRoot:
+    tile: {fileID: 11400000, guid: 9775deab9b39fb34dba82597d2c6cf64, type: 2}
+    contactPoints: 0000000001000000
+  horizontalRoot:
+    tile: {fileID: 11400000, guid: a67bf6e919f90a94f9c126d2803fb0f2, type: 2}
+    contactPoints: 0200000003000000
+  crossRoot:
+    tile: {fileID: 11400000, guid: 7a0b3c6735640cb4680be1cd68701769, type: 2}
+    contactPoints: 00000000010000000200000003000000
+  leftTRoot:
+    tile: {fileID: 11400000, guid: be799c5ca7015b643806e21e08303a68, type: 2}
+    contactPoints: 000000000100000002000000
+  rightTRoot:
+    tile: {fileID: 11400000, guid: edcaa39cbdc62904a8cb2614a9944f67, type: 2}
+    contactPoints: 000000000100000003000000
+  upTRoot:
+    tile: {fileID: 11400000, guid: cf0fa06d288a0fd4e9d5ef37b15b5649, type: 2}
+    contactPoints: 000000000200000003000000
+  downTRoot:
+    tile: {fileID: 11400000, guid: d4455184a1d04be47bdd93a7868d52a6, type: 2}
+    contactPoints: 010000000200000003000000
+  leftUpLRoot:
+    tile: {fileID: 11400000, guid: 28da1e4aa96090f49ba5f24f90a46778, type: 2}
+    contactPoints: 0000000003000000
+  rightUpLRoot:
+    tile: {fileID: 11400000, guid: 3cec522091cee1846b6bcf8c10f8f2b3, type: 2}
+    contactPoints: 0000000002000000
+  leftDownLRoot:
+    tile: {fileID: 11400000, guid: 1f5cb29fde9a49b4986fe731a3fd6ff1, type: 2}
+    contactPoints: 0100000003000000
+  rightDownLRoot:
+    tile: {fileID: 11400000, guid: 16769dff5379e0c4e9a25a173555f394, type: 2}
+    contactPoints: 0100000002000000
   growthPoints: []
+  bendPoints: []
 --- !u!1 &1047588180
 GameObject:
   m_ObjectHideFlags: 0

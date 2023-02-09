@@ -13,6 +13,8 @@ public class RootMouseManager : MonoBehaviour
     public int level2Fertilizer = 0;
     public int level3Fertilizer = 0;
 
+    public int seeds = 0;
+
     Vector2 worldPoint;
     RaycastHit2D hit;
 
@@ -24,7 +26,27 @@ public class RootMouseManager : MonoBehaviour
             worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int tilePosition = tileMap.WorldToCell(worldPoint);
 
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.T))
+            {
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Up);
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Down);
+                }
+                else if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Left);
+                }
+                else if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Right);
+                }
+            }
+
+            /*if (Input.GetKey(KeyCode.LeftControl))
             {
                 //if (level1Fertilizer > 0)
                 {
@@ -44,7 +66,7 @@ public class RootMouseManager : MonoBehaviour
                     }
                 }
             }
-            else
+            else if (Input.GetKey(KeyCode.C))
             {
                 //if (level3Fertilizer > 0)
                 {
@@ -53,7 +75,14 @@ public class RootMouseManager : MonoBehaviour
                         level2Fertilizer--;
                     }
                 }
-            }
+            }*/
+            /*else if (Input.GetKey(KeyCode.S))
+            {
+                //if (seeds > 0)
+                {
+                    
+                }
+            }*/
         }
     }
 }
