@@ -21,68 +21,55 @@ public class RootMouseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        /*if (Input.GetMouseButtonDown(0))
+        {*/
             worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int tilePosition = tileMap.WorldToCell(worldPoint);
 
-            if (Input.GetKey(KeyCode.T))
+            if (Input.GetKeyDown(KeyCode.T))
             {
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Up);
                 }
-                else if (Input.GetKey(KeyCode.DownArrow))
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Down);
                 }
-                else if (Input.GetKey(KeyCode.LeftArrow))
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Left);
                 }
-                else if (Input.GetKey(KeyCode.RightArrow))
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Right);
                 }
             }
 
-            /*if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKeyDown(KeyCode.L))
             {
-                //if (level1Fertilizer > 0)
+                if (Input.GetKeyDown(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    if (rootManager.Extend(tilePosition, RootManager.RootExtensionOp.TRoot))
-                    {
-                        level1Fertilizer--;
-                    }
+                    rootManager.AddLRoot(tilePosition, RootManager.Direction.Left, RootManager.Direction.Up);
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    rootManager.AddLRoot(tilePosition, RootManager.Direction.Left, RootManager.Direction.Down);
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    rootManager.AddLRoot(tilePosition, RootManager.Direction.Right, RootManager.Direction.Up);
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    rootManager.AddLRoot(tilePosition, RootManager.Direction.Right, RootManager.Direction.Down);
                 }
             }
-            else if (Input.GetKey(KeyCode.LeftShift))
+
+            if (Input.GetKeyDown(KeyCode.H))
             {
-                //if (level2Fertilizer > 0)
-                {
-                    if (rootManager.Extend(tilePosition, RootManager.RootExtensionOp.HorizontalRoot))
-                    {
-                        level2Fertilizer--;
-                    }
-                }
+                rootManager.AddHorizontalRoot(tilePosition);
             }
-            else if (Input.GetKey(KeyCode.C))
-            {
-                //if (level3Fertilizer > 0)
-                {
-                    if (rootManager.Extend(tilePosition, RootManager.RootExtensionOp.CrossRoot))
-                    {
-                        level2Fertilizer--;
-                    }
-                }
-            }*/
-            /*else if (Input.GetKey(KeyCode.S))
-            {
-                //if (seeds > 0)
-                {
-                    
-                }
-            }*/
-        }
+        //}
     }
 }

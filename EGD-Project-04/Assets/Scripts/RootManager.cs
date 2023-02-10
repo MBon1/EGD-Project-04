@@ -63,6 +63,26 @@ public class RootManager : MonoBehaviour
         
     }
 
+    Direction InvertDirection(Direction direction)
+    {
+        if (direction == Direction.Up)
+        {
+            return Direction.Down;
+        }
+        else if (direction == Direction.Down)
+        {
+            return Direction.Up;
+        }
+        else if (direction == Direction.Left)
+        {
+            return Direction.Right;
+        }
+        else
+        {
+            return Direction.Left;
+        }
+    }
+
     Vector3Int ContactPointToPosition(Vector3Int position, Direction contactPoint)
     {
         if (contactPoint == Direction.Up)
@@ -206,115 +226,108 @@ public class RootManager : MonoBehaviour
         }
     }
 
-    public void ChangeToLRoot()
+    public void ChangeToCrossRoot(Vector3Int position)
     {
 
     }
 
-    public void ChangeToCrossRoot()
+    public bool CheckIfLRootPossible(Vector3Int position, Direction horizontalDirection, Direction verticalDirection)
     {
-
-    }
-
-    /*
-    void Bend(Vector3Int position, Direction direction)
-    {
-        TileBase tileBase = rootTileMap.GetTile(position);
-
-        Vector3Int endL = position + new Vector3Int(1, 0, 0);
-        Vector3Int endR = position - new Vector3Int(1, 0, 0);
-
-
-        if (tileBase == horizontalRoot)
+        if ((horizontalDirection != Direction.Left && horizontalDirection != Direction.Right) ||
+            (verticalDirection != Direction.Up && verticalDirection != Direction.Down))
         {
-            if (direction == Direction.Down)
-            {
+            Debug.LogError("INVALID DIRECTION");
+            return false;
+        }
 
-            }
+        Tile tile = rootTileMap.GetTile<Tile>(position);
+        if (tile != null)
+        {
+            return false;
+        }
+
+        // Get tiles L root could connect to
+        Tile horizontalTile = rootTileMap.GetTile<Tile>(ContactPointToPosition(position, InvertDirection(horizontalDirection)));
+        Tile verticalTile = rootTileMap.GetTile<Tile>(ContactPointToPosition(position, verticalDirection));
+
+        if (horizontalTile != null && HasContactPoint(rootsByTile[horizontalTile].contactPoints, horizontalDirection) || 
+            verticalTile != null && HasContactPoint(rootsByTile[verticalTile].contactPoints, InvertDirection(verticalDirection)))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void AddLRoot(Vector3Int position, Direction horizontalDirection, Direction verticalDirection)
+    {
+        if ((horizontalDirection != Direction.Left && horizontalDirection != Direction.Right) ||
+            (verticalDirection != Direction.Up && verticalDirection != Direction.Down))
+        {
+            Debug.LogError("INVALID DIRECTION");
+            return;
+        }
+
+        if (!CheckIfLRootPossible(position, horizontalDirection, verticalDirection))
+        {
+            Debug.Log("Failed L Root");
+            return;
+        }
+
+        if (verticalDirection == Direction.Up && horizontalDirection == Direction.Left)
+        {
+            Debug.Log("Adding UL L Root");
+            AddRoot(leftUpLRoot, position);
+        }
+        else if (verticalDirection == Direction.Down && horizontalDirection == Direction.Left)
+        {
+            Debug.Log("Adding DL L Root");
+            AddRoot(leftDownLRoot, position);
+        }
+        else if(verticalDirection == Direction.Up && horizontalDirection == Direction.Right)
+        {
+            Debug.Log("Adding UR L Root");
+            AddRoot(rightUpLRoot, position);
+        }
+        else if (verticalDirection == Direction.Down && horizontalDirection == Direction.Right)
+        {
+            Debug.Log("Adding DR L Root");
+            AddRoot(rightDownLRoot, position);
         }
     }
 
-    List<Vector3Int> GetConnectedRoots(Vector3Int position)
+    public bool CheckIfHorizontalRootPossible(Vector3Int position)
     {
-        List<Vector3Int> connectedRoots = new List<Vector3Int>();
-
-        return connectedRoots;
-    }
-
-    public void Clip(Vector3Int position)
-    {
-
-    }
-
-    public bool Extend(Vector3Int position, RootExtensionOp rootExtensionOp)
-    {
-        TileBase tileBase = rootTileMap.GetTile(position);
-
-        if (rootExtensionOp == RootExtensionOp.CrossRoot)
+        Tile tile = rootTileMap.GetTile<Tile>(position);
+        if (tile != null)
         {
-            // Check if valid position
-            if (tileBase == verticalRoot ||
-                tileBase == leftLRoot ||
-                tileBase == rightLRoot)
-            {
-                // Add cross root
-                rootTileMap.SetTile(position, crossRoot);
-                return true;
-            }
+            return false;
         }
 
-        if (rootExtensionOp == RootExtensionOp.TRoot)
+        foreach(Direction d in horizontalRoot.contactPoints)
         {
-            // Check if valid vertical position
-            if (tileBase == verticalRoot)
+            Tile t = rootTileMap.GetTile<Tile>(ContactPointToPosition(position, d));
+            if (t != null && HasContactPoint(rootsByTile[t].contactPoints, InvertDirection(d)))
             {
-                // Add a random vertical T root
-                if (Random.Range(0, 2) < 1)
-                {
-                    rootTileMap.SetTile(position, leftTRoot);
-                }
-                else
-                {
-                    rootTileMap.SetTile(position, righttTRoot);
-                }
                 return true;
-            }
-
-            // Check if valid horizontal position
-            if (tileBase == horizontalRoot)
-            {
-                // Add horizontal T root
-                rootTileMap.SetTile(position, downTRoot);
-                growthPoints.Add(position);
-                return true;
-            }
-        }
-
-        if (rootExtensionOp == RootExtensionOp.HorizontalRoot)
-        {
-            if (tileBase == null)
-            {
-                Vector3Int endL = position + new Vector3Int(1, 0, 0);
-                Vector3Int endR = position - new Vector3Int(1, 0, 0);
-
-                TileBase tileBaseL = rootTileMap.GetTile(endL);
-                TileBase tileBaseR = rootTileMap.GetTile(endR);
-
-                if (tileBaseL == crossRoot || tileBaseL == leftTRoot ||
-                    tileBaseR == crossRoot || tileBaseR == righttTRoot ||
-                    tileBaseL == downTRoot || tileBaseR == downTRoot ||
-                    tileBaseL == upTRoot || tileBaseR == upTRoot ||
-                    tileBaseL == horizontalRoot || tileBaseR == horizontalRoot)
-                {
-                    rootTileMap.SetTile(position, horizontalRoot);
-                    return true;
-                }
-                return false;
             }
         }
 
         return false;
-    }*/
+    }
+
+    public void AddHorizontalRoot(Vector3Int position)
+    {
+        if (CheckIfHorizontalRootPossible(position))
+        {
+            AddRoot(horizontalRoot, position);
+            Debug.Log("PASSED H");
+        }
+        else
+        {
+            Debug.Log("FAILED H");
+        }
+    }
 
     public enum RootExtensionOp
     {
