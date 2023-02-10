@@ -261,6 +261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootTileMap: {fileID: 1047588183}
   originRootPosition: {x: 0, y: 4, z: 0}
+  growthSpeed: 1
+  collectionSpeed: 0.1
   originRoot:
     tile: {fileID: 11400000, guid: 1d3a6ad9719de5946a8cd9fc3706d7bd, type: 2}
     contactPoints: 01000000

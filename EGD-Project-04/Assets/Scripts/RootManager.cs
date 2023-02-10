@@ -9,6 +9,10 @@ public class RootManager : MonoBehaviour
     [Header("Set Up")]
     [SerializeField] Tilemap rootTileMap;
     [SerializeField] Vector3Int originRootPosition = new Vector3Int(0, 4, 0);
+    [Space(10)]
+    [SerializeField] float growthSpeed = 1.0f;
+    [SerializeField] float collectionSpeed = 0.1f;
+    [SerializeField] float collectionAmount = 5.5f;
 
     [Header("Roots")]
     Dictionary<Tile, Root> rootsByTile = new Dictionary<Tile, Root>();
@@ -55,12 +59,25 @@ public class RootManager : MonoBehaviour
 
         // Set initial root position
         AddBaseRoot();
+
+        // Start Root Growth
+        StartCoroutine(RootGrowth());
+
+        // Start Moisture Collection
+        StartCoroutine(CollectMoisture());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator RootGrowth()
     {
-        
+        yield return new WaitForSeconds(growthSpeed);
+        Grow();
+        StartCoroutine(RootGrowth());
+    }
+    IEnumerator CollectMoisture()
+    {
+        yield return new WaitForSeconds(collectionSpeed);
+        CountBranchesOffOrigin();   // * collectionAmount
+        StartCoroutine(CollectMoisture());
     }
 
     Direction InvertDirection(Direction direction)
@@ -369,6 +386,11 @@ public class RootManager : MonoBehaviour
             }
             AddRoot(crossRoot, position);
         }
+    }
+
+    int CountBranchesOffOrigin()
+    {
+        return 0;
     }
 
     public enum RootExtensionOp
