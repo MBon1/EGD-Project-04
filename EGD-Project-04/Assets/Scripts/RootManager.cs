@@ -226,11 +226,6 @@ public class RootManager : MonoBehaviour
         }
     }
 
-    public void ChangeToCrossRoot(Vector3Int position)
-    {
-
-    }
-
     public bool CheckIfLRootPossible(Vector3Int position, Direction horizontalDirection, Direction verticalDirection)
     {
         if ((horizontalDirection != Direction.Left && horizontalDirection != Direction.Right) ||
@@ -321,11 +316,38 @@ public class RootManager : MonoBehaviour
         if (CheckIfHorizontalRootPossible(position))
         {
             AddRoot(horizontalRoot, position);
-            Debug.Log("PASSED H");
         }
-        else
+    }
+
+    public bool CheckIfCrossRootPossible(Vector3Int position)
+    {
+        Tile tile = rootTileMap.GetTile<Tile>(position);
+        if (tile != null)
         {
-            Debug.Log("FAILED H");
+            return true;
+        }
+
+        foreach (Direction d in crossRoot.contactPoints)
+        {
+            Tile t = rootTileMap.GetTile<Tile>(ContactPointToPosition(position, d));
+            if (t != null && HasContactPoint(rootsByTile[t].contactPoints, InvertDirection(d)))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void SetToCrossRoot(Vector3Int position)
+    {
+        if (CheckIfCrossRootPossible(position))
+        {
+            if (rootTileMap.GetTile<Tile>(position) != null)
+            {
+                RemoveRoot(position);
+            }
+            AddRoot(crossRoot, position);
         }
     }
 

@@ -70,6 +70,11 @@ public class RootMouseManager : MonoBehaviour
             {
                 rootManager.AddHorizontalRoot(tilePosition);
             }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                rootManager.SetToCrossRoot(tilePosition);
+            }
         //}
     }
 }
