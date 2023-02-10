@@ -75,6 +75,11 @@ public class RootMouseManager : MonoBehaviour
             {
                 rootManager.SetToCrossRoot(tilePosition);
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                rootManager.RemoveRoot(tilePosition);
+            }
         //}
     }
 }

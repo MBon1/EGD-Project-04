@@ -126,11 +126,23 @@ public class RootManager : MonoBehaviour
         }
     }
 
-    void RemoveRoot(Vector3Int position)
+    public bool CanRemoveRoot(Vector3Int position)
     {
         Tile root = rootTileMap.GetTile<Tile>(position);
 
-        if (root == null)
+        if (root == null || root == originRoot.tile)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public void RemoveRoot(Vector3Int position)
+    {
+        Tile root = rootTileMap.GetTile<Tile>(position);
+
+        if (!CanRemoveRoot(position))
         {
             return;
         }
@@ -140,6 +152,14 @@ public class RootManager : MonoBehaviour
         if (growthPoints.Contains(position))
         {
             growthPoints.Remove(position);
+        }
+
+        Vector3Int abovePosition = ContactPointToPosition(position, Direction.Up);
+        root = rootTileMap.GetTile<Tile>(abovePosition);
+        if (root != null && HasContactPoint(rootsByTile[root].contactPoints, Direction.Down) && 
+            !growthPoints.Contains(abovePosition))
+        {
+            growthPoints.Add(abovePosition);
         }
     }
 
