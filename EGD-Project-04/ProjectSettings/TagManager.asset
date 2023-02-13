@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Roots
+    uniqueID: 2131046387
+    locked: 0
