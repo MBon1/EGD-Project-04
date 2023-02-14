@@ -13,6 +13,7 @@ public class RootManager : MonoBehaviour
     [SerializeField] float growthSpeed = 1.0f;
     [SerializeField] float collectionSpeed = 0.1f;
     [SerializeField] float collectionAmount = 5.5f;
+    HashSet<Vector3Int> searchedPoints = new HashSet<Vector3Int>();
 
     [Header("Roots")]
     Dictionary<Tile, Root> rootsByTile = new Dictionary<Tile, Root>();
@@ -35,7 +36,6 @@ public class RootManager : MonoBehaviour
     [Space(20)]
 
     [SerializeField] List<Vector3Int> growthPoints = new List<Vector3Int>();
-    [SerializeField] List<Vector3Int> bendPoints = new List<Vector3Int>();
 
 
     // Start is called before the first frame update
@@ -76,7 +76,9 @@ public class RootManager : MonoBehaviour
     IEnumerator CollectMoisture()
     {
         yield return new WaitForSeconds(collectionSpeed);
-        CountBranchesOffOrigin();   // * collectionAmount
+        int numRoots = CountBranchesOffOrigin();
+        float moistureGains = numRoots * collectionAmount;
+        Debug.Log(numRoots + " yielded " + moistureGains + " moisture");
         StartCoroutine(CollectMoisture());
     }
 
@@ -390,7 +392,38 @@ public class RootManager : MonoBehaviour
 
     int CountBranchesOffOrigin()
     {
-        return 0;
+        searchedPoints.Clear();
+        TraverseRootSystem(originRootPosition);
+        return searchedPoints.Count;
+    }
+
+    void TraverseRootSystem(Vector3Int point)
+    {
+        if (searchedPoints.Contains(point))
+        {
+            return;
+        }
+
+        Tile rootTile = rootTileMap.GetTile<Tile>(point);
+        if (rootTile == null)
+        {
+            return;
+        }
+
+        searchedPoints.Add(point);
+        Root root = rootsByTile[rootTile];
+
+        foreach(Direction dir in root.contactPoints)
+        {
+            Vector3Int newPoint = ContactPointToPosition(point, dir);
+            // Check if there is a root on this end that can connect to this root
+            Tile newRootTile = rootTileMap.GetTile<Tile>(newPoint);
+            if (newRootTile != null &&
+                HasContactPoint(rootsByTile[newRootTile].contactPoints, InvertDirection(dir)))
+            {
+                TraverseRootSystem(newPoint);
+            }
+        }
     }
 
     public enum RootExtensionOp
