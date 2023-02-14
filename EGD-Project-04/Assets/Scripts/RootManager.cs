@@ -60,16 +60,17 @@ public class RootManager : MonoBehaviour
         // Set initial root position
         AddBaseRoot();
 
-        // Start Root Growth
-        StartCoroutine(RootGrowth());
-
         // Start Moisture Collection
         StartCoroutine(CollectMoisture());
+
+        // Start Root Growth
+        StartCoroutine(RootGrowth());
     }
 
     IEnumerator RootGrowth()
     {
         yield return new WaitForSeconds(growthSpeed);
+        //Debug.Log(searchedPoints.Count);
         Grow();
         StartCoroutine(RootGrowth());
     }
@@ -78,7 +79,7 @@ public class RootManager : MonoBehaviour
         yield return new WaitForSeconds(collectionSpeed);
         int numRoots = CountBranchesOffOrigin();
         float moistureGains = numRoots * collectionAmount;
-        Debug.Log(numRoots + " yielded " + moistureGains + " moisture");
+        //Debug.Log(numRoots + " yielded " + moistureGains + " moisture");
         StartCoroutine(CollectMoisture());
     }
 
@@ -196,8 +197,11 @@ public class RootManager : MonoBehaviour
 
         foreach (Vector3Int point in growthPoints)
         {
+            // Check if root is in searchedPoints (if it's connected to main root)
+            // and the tile below is empty
             Vector3Int targetPoint = ContactPointToPosition(point, Direction.Down);
-            if (rootTileMap.GetTile(targetPoint) == null)
+            if (searchedPoints.Contains(point) && 
+                rootTileMap.GetTile(targetPoint) == null)
             {
                 // Populate
                 newGrowthPoints.Add(targetPoint);
