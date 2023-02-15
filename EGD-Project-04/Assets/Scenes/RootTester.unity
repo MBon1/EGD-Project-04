@@ -532,6 +532,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1047588183}
   rootManager: {fileID: 857426116}
+  autoDieSFX: {fileID: 4411518338202070261, guid: f3566c2d9aa76f44095f3f7a820cb73b, type: 3}
+  removeRoot: []
+  purchase: {fileID: 0}
+  failPurchase: {fileID: 0}
+  fail: {fileID: 0}
   level1Fertilizer: 0
   level2Fertilizer: 0
   level3Fertilizer: 0

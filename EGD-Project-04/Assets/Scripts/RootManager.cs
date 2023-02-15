@@ -465,4 +465,8 @@ public class RootManager : MonoBehaviour
     {
         moisture += amt;
     }
+    public bool CanPurchase(float amt)
+    {
+        return moisture - amt >= 0;
+    }
 }
