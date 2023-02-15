@@ -253,13 +253,6 @@ public class RootManager : MonoBehaviour
             {
                 // Root is blocked. Check again later
                 newGrowthPoints.Add(point);
-
-                // If target point is in clippedPoints, decrease counter by 1
-                /*if (clippedPoints.ContainsKey(targetPoint) &&
-                    Time.time - clippedPoints[targetPoint] > 0)
-                {
-                    clippedPoints.Remove(targetPoint);
-                }*/
             }
         }
 
