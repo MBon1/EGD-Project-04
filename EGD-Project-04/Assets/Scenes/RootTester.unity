@@ -2932,6 +2932,7 @@ MonoBehaviour:
   rootTileMap: {fileID: 1047588183}
   originRootPosition: {x: 0, y: 4, z: 0}
   growthSpeed: 1
+  delayedCyclesByClipping: 2
   collectionSpeed: 0.1
   collectionAmount: 5.5
   moistureUI: {fileID: 400566825}
@@ -3772,7 +3773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510c9228223b2b94b90544cad26c37fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootManager: {fileID: 0}
+  rootManager: {fileID: 857426116}
   inputDelay: 0.075
 --- !u!1 &1216925364
 GameObject:

@@ -12,6 +12,7 @@ public class RootManager : MonoBehaviour
     [SerializeField] Vector3Int originRootPosition = new Vector3Int(0, 4, 0);
     [Space(10)]
     [SerializeField] float growthSpeed = 0.5f;
+    [SerializeField] float delayedGrowthDuration = 2;
     [SerializeField] float collectionSpeed = 0.1f;
     [SerializeField] float collectionAmount = 5.5f;
     private float moisture = 0;
@@ -39,7 +40,9 @@ public class RootManager : MonoBehaviour
     [Space(20)]
 
     [SerializeField] List<Vector3Int> growthPoints = new List<Vector3Int>();
+    [SerializeField] List<Vector3Int> clippedPoints = new List<Vector3Int>();
     [SerializeField] public Vector3Int lowestRootPosition { get; private set; } = Vector3Int.zero;
+
 
 
     // Start is called before the first frame update
@@ -91,6 +94,15 @@ public class RootManager : MonoBehaviour
         moisture += moistureGains;
         //Debug.Log(numRoots + " yielded " + moistureGains + " moisture");
         StartCoroutine(CollectMoisture());
+    }
+
+    IEnumerator DelayGrowth(Vector3Int point)
+    {
+        yield return new WaitForSeconds(delayedGrowthDuration);
+        if (clippedPoints.Contains(point))
+        {
+            clippedPoints.Remove(point);
+        }
     }
 
     Direction InvertDirection(Direction direction)
@@ -155,6 +167,13 @@ public class RootManager : MonoBehaviour
             growthPoints.Add(position);
         }
 
+        // Check if the root's position is in the clippedPoints list
+        if (clippedPoints.Contains(position))
+        {
+            StopCoroutine(DelayGrowth(position));
+            clippedPoints.Remove(position);
+        }
+
         // Check if root's position is the deepest root in map
         if (position.y < lowestRootPosition.y)
         {
@@ -196,6 +215,12 @@ public class RootManager : MonoBehaviour
             !growthPoints.Contains(abovePosition))
         {
             growthPoints.Add(abovePosition);
+
+            if (!clippedPoints.Contains(position))
+            {
+                clippedPoints.Add(position);
+                StartCoroutine(DelayGrowth(position));
+            }
         }
     }
 
@@ -217,7 +242,8 @@ public class RootManager : MonoBehaviour
             // and the tile below is empty
             Vector3Int targetPoint = ContactPointToPosition(point, Direction.Down);
             if (searchedPoints.Contains(point) && 
-                rootTileMap.GetTile(targetPoint) == null)
+                rootTileMap.GetTile(targetPoint) == null && 
+                !clippedPoints.Contains(targetPoint))
             {
                 // Populate
                 newGrowthPoints.Add(targetPoint);
@@ -227,6 +253,13 @@ public class RootManager : MonoBehaviour
             {
                 // Root is blocked. Check again later
                 newGrowthPoints.Add(point);
+
+                // If target point is in clippedPoints, decrease counter by 1
+                /*if (clippedPoints.ContainsKey(targetPoint) &&
+                    Time.time - clippedPoints[targetPoint] > 0)
+                {
+                    clippedPoints.Remove(targetPoint);
+                }*/
             }
         }
 
