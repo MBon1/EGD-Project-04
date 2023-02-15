@@ -76,7 +76,7 @@ public class RootManager : MonoBehaviour
 
     private void Update()
     {
-        moistureUI.text = "" + moisture;
+        moistureUI.text = "" + moisture.ToString("0.0"); ;
     }
 
     IEnumerator RootGrowth()
