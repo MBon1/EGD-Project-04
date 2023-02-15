@@ -18,68 +18,71 @@ public class RootMouseManager : MonoBehaviour
     Vector2 worldPoint;
     RaycastHit2D hit;
 
+    public enum RootType { none, hor, ver, tL, tR, tU, tD, lRD, lLD, lRU, lLU, cross };
+    private List<RootType> RootTypes = new List<RootType>{ RootType.none, RootType.hor, RootType.ver, RootType.tL, RootType.tR, RootType.tU, RootType.tD, RootType.lRD, RootType.lLD, RootType.lRU, RootType.lLU, RootType.cross };
+    private RootType currType;
+
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetMouseButtonDown(0))
-        {*/
-            worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int tilePosition = tileMap.WorldToCell(worldPoint);
-
-            if (Input.GetKeyDown(KeyCode.T))
+        worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int tilePosition = tileMap.WorldToCell(worldPoint);
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (currType != RootType.none)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (currType == RootType.tU)
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Up);
                 }
-                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                else if (currType == RootType.tD)
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Down);
                 }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                else if (currType == RootType.tL)
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Left);
                 }
-                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                else if (currType == RootType.tR)
                 {
                     rootManager.ChangeToTRoot(tilePosition, RootManager.Direction.Right);
                 }
-            }
-
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                if (Input.GetKeyDown(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.LeftArrow))
+                else if (currType == RootType.lLU)
                 {
                     rootManager.AddLRoot(tilePosition, RootManager.Direction.Left, RootManager.Direction.Up);
                 }
-                else if (Input.GetKeyDown(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.LeftArrow))
+                else if (currType == RootType.lLD)
                 {
                     rootManager.AddLRoot(tilePosition, RootManager.Direction.Left, RootManager.Direction.Down);
                 }
-                else if (Input.GetKeyDown(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.RightArrow))
+                else if (currType == RootType.lRU)
                 {
                     rootManager.AddLRoot(tilePosition, RootManager.Direction.Right, RootManager.Direction.Up);
                 }
-                else if (Input.GetKeyDown(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.RightArrow))
+                else if (currType == RootType.lRD)
                 {
                     rootManager.AddLRoot(tilePosition, RootManager.Direction.Right, RootManager.Direction.Down);
                 }
+                else if (currType == RootType.hor)
+                {
+                    rootManager.AddHorizontalRoot(tilePosition);
+                }
+                else if (currType == RootType.cross)
+                {
+                    rootManager.SetToCrossRoot(tilePosition);
+                }
+                currType = RootType.none;
             }
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            if (currType == RootType.none) rootManager.RemoveRoot(tilePosition);
+            currType = RootType.none;
+        }
+    }
 
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                rootManager.AddHorizontalRoot(tilePosition);
-            }
-
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                rootManager.SetToCrossRoot(tilePosition);
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                rootManager.RemoveRoot(tilePosition);
-            }
-        //}
+    public void setRootType(int rt)
+    {
+        currType = RootTypes[rt];
     }
 }

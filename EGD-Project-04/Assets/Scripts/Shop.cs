@@ -9,7 +9,7 @@ public class Shop : MonoBehaviour
     [SerializeField] List<GameObject> row1, row2, row3, col1, col2, col3;
     private Button selfButton;
     private bool hidden;
-    private float moveAmt = 20f;
+    private float moveAmt = 30f;
     // Start is called before the first frame update
     void Start()
     {

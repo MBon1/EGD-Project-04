@@ -207,14 +207,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -532,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1047588183}
   rootManager: {fileID: 857426116}
+  cameraController: {fileID: 1115504115}
   level1Fertilizer: 0
   level2Fertilizer: 0
   level3Fertilizer: 0
@@ -1104,14 +1105,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2097,14 +2098,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2987,14 +2988,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3456,9 +3457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510c9228223b2b94b90544cad26c37fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minZoom: 1
-  maxZoom: 179
-  dragSpeed: 2
   inputDelay: 0.075
 --- !u!1 &1216925364
 GameObject:
@@ -3544,14 +3542,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4041,14 +4039,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11522,14 +11520,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11656,14 +11654,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11865,14 +11863,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11999,14 +11997,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSwitchManager, Assembly-CSharp
-        m_MethodName: PlayScene
-        m_Mode: 1
+      - m_Target: {fileID: 173554672}
+        m_TargetAssemblyTypeName: RootMouseManager, Assembly-CSharp
+        m_MethodName: setRootType
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
