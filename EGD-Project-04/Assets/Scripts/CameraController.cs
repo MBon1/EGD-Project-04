@@ -112,13 +112,15 @@ public class CameraController : MonoBehaviour
 
         if (Time.time - lastHoldtimes.y >= inputDelay)
         {
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.DownArrow) ||
+                Input.mouseScrollDelta.y < 0)
             {
                 move.y -= 1;
                 lastHoldtimes.y = Time.time;
             }
 
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.UpArrow) ||
+                Input.mouseScrollDelta.y > 0)
             {
                 move.y += 1;
                 lastHoldtimes.y = Time.time;

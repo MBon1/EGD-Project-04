@@ -2931,10 +2931,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootTileMap: {fileID: 1047588183}
   originRootPosition: {x: 0, y: 4, z: 0}
-  growthSpeed: 1
-  delayedCyclesByClipping: 2
-  collectionSpeed: 0.1
-  collectionAmount: 5.5
+  growthSpeed: 1.5
+  delayedGrowthDuration: 3
+  collectionSpeed: 1
+  collectionAmount: 1
   moistureUI: {fileID: 400566825}
   originRoot:
     tile: {fileID: 11400000, guid: 1d3a6ad9719de5946a8cd9fc3706d7bd, type: 2}
@@ -2973,6 +2973,7 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 16769dff5379e0c4e9a25a173555f394, type: 2}
     contactPoints: 0100000002000000
   growthPoints: []
+  clippedPoints: []
 --- !u!1001 &901508598
 PrefabInstance:
   m_ObjectHideFlags: 0
