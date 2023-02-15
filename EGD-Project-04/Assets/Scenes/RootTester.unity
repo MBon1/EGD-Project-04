@@ -699,6 +699,7 @@ MonoBehaviour:
   level2Fertilizer: 0
   level3Fertilizer: 0
   seeds: 0
+  canvas: {fileID: 203277304}
 --- !u!1 &195714020
 GameObject:
   m_ObjectHideFlags: 0

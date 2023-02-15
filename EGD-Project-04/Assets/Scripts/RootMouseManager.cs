@@ -36,6 +36,10 @@ public class RootMouseManager : MonoBehaviour
     private float currPrice;
     private bool remove = false;
 
+    // Screenshot Variables
+    public Canvas canvas;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -140,6 +144,11 @@ public class RootMouseManager : MonoBehaviour
             GameObject sfx = Instantiate(autoDieSFX);
             sfx.GetComponent<AudioAutoDie>().SetClip(clip);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            StartCoroutine(Screenshot());
+        }
     }
 
     public void setRootType(int rt)
@@ -158,4 +167,31 @@ public class RootMouseManager : MonoBehaviour
         }
     }
     public void setRemove() { remove = true; RootSprite.GetComponent<SpriteRenderer>().sprite = clipper; }
+
+    private IEnumerator Screenshot()
+    {
+        yield return null;
+        canvas.enabled = false;
+
+        yield return new WaitForEndOfFrame();
+
+        int width = Screen.width;
+        int height = Screen.height;
+        Texture2D screenshotTexture = new Texture2D(width, height, TextureFormat.ARGB32, false);
+
+        Rect rect = new Rect(0, 0, width, height);
+        screenshotTexture.ReadPixels(rect, 0, 0);
+        screenshotTexture.Apply();
+
+        byte[] byteArr = screenshotTexture.EncodeToPNG();
+
+        string directory = Application.dataPath + "/Screenshots";
+        System.IO.Directory.CreateDirectory(directory);
+        System.DateTime dt = System.DateTime.Now;
+        string file_name = directory + "/rootaissance_creation_" + dt.Year + "-" + dt.Month + "-" + dt.Day + "-" + dt.Hour + "-" + dt.Minute + "-" + dt.Second + "-" + dt.Millisecond + ".png";
+        Debug.Log(file_name);
+
+        System.IO.File.WriteAllBytes(file_name, byteArr);
+        canvas.enabled = true;
+    }
 }
