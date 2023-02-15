@@ -10,8 +10,13 @@ public class RootMouseManager : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] GameObject autoDieSFX;
+    [SerializeField] List<AudioClip> plantRoot;
     [SerializeField] List<AudioClip> removeRoot;
-    [SerializeField] AudioClip purchase, failPurchase, fail;
+    [SerializeField] AudioClip purchase, failPurchase, fail, cancel;
+
+    [Header("Visual")]
+    [SerializeField] List<Sprite> rootSprites;
+    [SerializeField] GameObject SelectedSquare, RootSprite;
 
     [Header("Testing")]
     public int level1Fertilizer = 0;
@@ -34,11 +39,26 @@ public class RootMouseManager : MonoBehaviour
     {
         worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int tilePosition = tileMap.WorldToCell(worldPoint);
+
+        // visual
+        if (currType != RootType.none)
+        {
+            SelectedSquare.SetActive(true);
+        }
+        else
+        {
+            SelectedSquare.SetActive(false);
+            RootSprite.GetComponent<SpriteRenderer>().sprite = rootSprites[0];
+        }
+
+        SelectedSquare.transform.position = RootSprite.transform.position = tilePosition + new Vector3(0.5f,0.5f,0);
+
+        // actual placing or removing
         if (Input.GetMouseButtonDown(0))
         {
-            AudioClip clip = purchase;
+            AudioClip clip = plantRoot[Random.Range(0,plantRoot.Count)];
             bool canPlace = false;
-            if (currType != RootType.none)
+            if (currType != RootType.none && rootManager.CanPurchase(currPrice))
             {
                 if (currType == RootType.tU)
                 {
@@ -91,23 +111,27 @@ public class RootMouseManager : MonoBehaviour
                     rootManager.SetToCrossRoot(tilePosition);
                 }
                 rootManager.EditMoisture(-currPrice);
-                currType = RootType.none;
-                currPrice = 0;
             }
             if (!canPlace) clip = fail;
-            GameObject sfx = Instantiate(autoDieSFX);
-            sfx.GetComponent<AudioAutoDie>().SetClip(clip);
+            if (!rootManager.CanPurchase(currPrice)) clip = failPurchase;
+            if (currType != RootType.none)
+            {
+                GameObject sfx = Instantiate(autoDieSFX);
+                sfx.GetComponent<AudioAutoDie>().SetClip(clip);
+            }
         }
         else if (Input.GetMouseButtonDown(1))
         {
+            AudioClip clip = cancel;
             if (currType == RootType.none && rootManager.CanRemoveRoot(tilePosition))
             {
                 rootManager.RemoveRoot(tilePosition);
-                GameObject sfx = Instantiate(autoDieSFX);
-                sfx.GetComponent<AudioAutoDie>().SetClip(removeRoot[Random.Range(0,removeRoot.Count)]);
+                clip = removeRoot[Random.Range(0, removeRoot.Count)];
             }
             currType = RootType.none;
             currPrice = 0;
+            GameObject sfx = Instantiate(autoDieSFX);
+            sfx.GetComponent<AudioAutoDie>().SetClip(clip);
         }
     }
 
@@ -117,6 +141,7 @@ public class RootMouseManager : MonoBehaviour
         {
             currType = RootTypes[rt];
             currPrice = Prices[rt];
+            RootSprite.GetComponent<SpriteRenderer>().sprite = rootSprites[rt];
         }
         else
         {
