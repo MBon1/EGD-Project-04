@@ -689,8 +689,8 @@ MonoBehaviour:
   - {fileID: 7867349098588834820, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
   - {fileID: -3476025623009295106, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
   - {fileID: 4511352140000062183, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
-  - {fileID: 5629855562883993388, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
   - {fileID: 4378982166141552596, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
+  - {fileID: 5629855562883993388, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
   - {fileID: 2124376277609566700, guid: 915da72d8d0a7b1449f3818aada5851c, type: 3}
   clipper: {fileID: 8699069900992395679, guid: 7df8a9f60056d5e41bead32a1ce335d1, type: 3}
   SelectedSquare: {fileID: 2083010975}
@@ -2269,7 +2269,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2932,7 +2932,6 @@ MonoBehaviour:
   rootTileMap: {fileID: 1047588183}
   originRootPosition: {x: 0, y: 4, z: 0}
   growthSpeed: 1
-  delayedCyclesByClipping: 2
   collectionSpeed: 0.1
   collectionAmount: 5.5
   moistureUI: {fileID: 400566825}
@@ -3866,7 +3865,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
