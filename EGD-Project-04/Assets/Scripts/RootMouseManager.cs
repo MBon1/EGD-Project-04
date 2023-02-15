@@ -19,8 +19,10 @@ public class RootMouseManager : MonoBehaviour
     RaycastHit2D hit;
 
     public enum RootType { none, hor, ver, tL, tR, tU, tD, lRD, lLD, lRU, lLU, cross };
-    private List<RootType> RootTypes = new List<RootType>{ RootType.none, RootType.hor, RootType.ver, RootType.tL, RootType.tR, RootType.tU, RootType.tD, RootType.lRD, RootType.lLD, RootType.lRU, RootType.lLU, RootType.cross };
+    private static List<RootType> RootTypes = new List<RootType> { RootType.none, RootType.hor, RootType.ver, RootType.tL, RootType.tR, RootType.tU, RootType.tD, RootType.lRD, RootType.lLD, RootType.lRU, RootType.lLU, RootType.cross };
     private RootType currType;
+    private static List<float> Prices = new List<float> { 0, 75f, 100f, 50f, 50f, 100f, 100f, 50f, 50f, 100f, 100f, 150f };
+    private float currPrice;
 
     // Update is called once per frame
     void Update()
@@ -72,6 +74,7 @@ public class RootMouseManager : MonoBehaviour
                     rootManager.SetToCrossRoot(tilePosition);
                 }
                 currType = RootType.none;
+                rootManager.EditMoisture(-currPrice);
             }
         }
         else if (Input.GetMouseButtonDown(1))
@@ -84,5 +87,6 @@ public class RootMouseManager : MonoBehaviour
     public void setRootType(int rt)
     {
         currType = RootTypes[rt];
+        currPrice = Prices[rt];
     }
 }

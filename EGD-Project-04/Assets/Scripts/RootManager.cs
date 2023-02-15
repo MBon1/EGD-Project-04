@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class RootManager : MonoBehaviour
@@ -10,10 +11,12 @@ public class RootManager : MonoBehaviour
     [SerializeField] Tilemap rootTileMap;
     [SerializeField] Vector3Int originRootPosition = new Vector3Int(0, 4, 0);
     [Space(10)]
-    [SerializeField] float growthSpeed = 1.0f;
+    [SerializeField] float growthSpeed = 0.5f;
     [SerializeField] float collectionSpeed = 0.1f;
     [SerializeField] float collectionAmount = 5.5f;
+    private float moisture = 0;
     HashSet<Vector3Int> searchedPoints = new HashSet<Vector3Int>();
+    [SerializeField] Text moistureUI;
 
     [Header("Roots")]
     Dictionary<Tile, Root> rootsByTile = new Dictionary<Tile, Root>();
@@ -67,6 +70,11 @@ public class RootManager : MonoBehaviour
         StartCoroutine(RootGrowth());
     }
 
+    private void Update()
+    {
+        moistureUI.text = "" + moisture;
+    }
+
     IEnumerator RootGrowth()
     {
         yield return new WaitForSeconds(growthSpeed);
@@ -79,6 +87,7 @@ public class RootManager : MonoBehaviour
         yield return new WaitForSeconds(collectionSpeed);
         int numRoots = CountBranchesOffOrigin();
         float moistureGains = numRoots * collectionAmount;
+        moisture += moistureGains;
         //Debug.Log(numRoots + " yielded " + moistureGains + " moisture");
         StartCoroutine(CollectMoisture());
     }
@@ -450,5 +459,10 @@ public class RootManager : MonoBehaviour
     {
         public Tile tile;
         public Direction[] contactPoints;
+    }
+
+    public void EditMoisture(float amt)
+    {
+        moisture += amt;
     }
 }
