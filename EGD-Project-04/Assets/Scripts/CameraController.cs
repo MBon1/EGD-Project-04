@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
     float defaultFieldOfView;
     Vector3 defaultPosition;
 
+    [SerializeField] RootManager rootManager;
+
 
     /*[SerializeField] float minZoom = 1.0f;
     [SerializeField] float maxZoom = 179.0f;
@@ -37,12 +39,12 @@ public class CameraController : MonoBehaviour
     private void ReadInput()
     {
         // Reset Values
-        if (Input.GetKey(KeyCode.Escape))
+        /*if (Input.GetKey(KeyCode.Escape))
         {
             mainCamera.fieldOfView = defaultFieldOfView;
             this.gameObject.transform.position = defaultPosition;
             return;
-        }
+        }*/
 
         /*// Zoom In/Out
         float scroll = Input.mouseScrollDelta.y;
@@ -67,6 +69,7 @@ public class CameraController : MonoBehaviour
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
         Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, this.gameObject.transform.position.z);*/
 
+
         if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
             lastHoldtimes.x = 0;
@@ -75,6 +78,19 @@ public class CameraController : MonoBehaviour
         if (!Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow))
         {
             lastHoldtimes.y = 0;
+        }
+
+
+        // Bring to lowest root
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            this.gameObject.transform.position = new Vector3(rootManager.lowestRootPosition.x, rootManager.lowestRootPosition.y - 1, this.transform.position.z);
+        }
+
+        // Bring to origin root
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            this.gameObject.transform.position = defaultPosition;
         }
 
 

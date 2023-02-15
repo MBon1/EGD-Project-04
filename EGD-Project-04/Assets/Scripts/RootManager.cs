@@ -39,6 +39,7 @@ public class RootManager : MonoBehaviour
     [Space(20)]
 
     [SerializeField] List<Vector3Int> growthPoints = new List<Vector3Int>();
+    [SerializeField] public Vector3Int lowestRootPosition { get; private set; } = Vector3Int.zero;
 
 
     // Start is called before the first frame update
@@ -152,6 +153,12 @@ public class RootManager : MonoBehaviour
         if (addToGrowthPoints && HasContactPoint(root.contactPoints, Direction.Down))
         {
             growthPoints.Add(position);
+        }
+
+        // Check if root's position is the deepest root in map
+        if (position.y < lowestRootPosition.y)
+        {
+            lowestRootPosition = position;
         }
     }
 
