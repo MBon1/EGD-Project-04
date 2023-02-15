@@ -130,8 +130,6 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        Debug.Log(lastHoldtimes);
-
         this.gameObject.transform.position = move;
     }
 }

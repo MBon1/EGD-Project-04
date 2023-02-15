@@ -62,7 +62,7 @@ public class RootMouseManager : MonoBehaviour
             AudioClip clip = plantRoot[Random.Range(0,plantRoot.Count)];
             bool canPlace = false;
             bool canRemove = true;
-            if (worldPoint.y < -3f && Mathf.Abs(worldPoint.x) < 7f) canRemove = false;
+            //if (worldPoint.y < -3f && Mathf.Abs(worldPoint.x) < 7f) { canRemove = false; Debug.Log("Cannot remove"); }
             if (currType != RootType.none && rootManager.CanPurchase(currPrice) && !remove)
             {
                 if (currType == RootType.tU)
@@ -120,6 +120,7 @@ public class RootMouseManager : MonoBehaviour
             else if (remove && canRemove)
             {
                 clip = removeRoot[Random.Range(0, removeRoot.Count)];
+                Debug.Log("Clipping: " + tilePosition);
                 rootManager.RemoveRoot(tilePosition);
             }
             if (!canPlace) clip = fail;
