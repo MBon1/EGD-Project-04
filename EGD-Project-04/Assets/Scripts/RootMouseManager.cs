@@ -40,7 +40,6 @@ public class RootMouseManager : MonoBehaviour
     void Update()
     {
         worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        print(worldPoint);
         Vector3Int tilePosition = tileMap.WorldToCell(worldPoint);
 
         // visual
@@ -62,7 +61,8 @@ public class RootMouseManager : MonoBehaviour
         {
             AudioClip clip = plantRoot[Random.Range(0,plantRoot.Count)];
             bool canPlace = false;
-            bool canRemove = worldPoint.y > -3f && worldPoint.x > 7f && worldPoint.x < -7f;
+            bool canRemove = true;
+            if (worldPoint.y < -3f && Mathf.Abs(worldPoint.x) < 7f) canRemove = false;
             if (currType != RootType.none && rootManager.CanPurchase(currPrice) && !remove)
             {
                 if (currType == RootType.tU)
